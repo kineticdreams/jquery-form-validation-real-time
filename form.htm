@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/libraries/jquery-3.2.1.min.js"></script>
+    <script src="js/libraries/jquery-ui.min.js"></script>
+    <script src="js/script.js"></script>
+    <title>task3</title>
+</head>
+
+<body>
+    <form id="myform" >
+        <ol>
+            <li>
+                <label for="email">Username/Email address</label>
+            </li>
+            <li>
+
+                <input type="email" name="email" id="email" title="Your email" placeholder="youremail@provider.domain">
+                <img src='images/tick.png'>
+                <span class="off arrowBox invalid"></span>
+            </li>
+
+            <li>
+                <label for="pass">Password</label>
+            </li>
+            <li>
+                <input type="password" name="password" id="pass" title="Please type your password" placeholder="Please type your password">
+                <span class="off arrowBox invalid"></span>
+            </li>
+            <li>
+                <label for="phone">Mobile Phone Number</label>
+            </li>
+            <li>
+                <input type="tel" name="telephone" id="phone" title="" placeholder="04 xxxx xxxx">
+                <span class="off arrowBox invalid"></span>
+            </li>
+            <li>
+                <label for="myurl">Webpage URL</label>
+            </li>
+            <li>
+                <input type="url" name="url" id="myurl" title="" placeholder="http://">
+                <span class="off arrowBox invalid"></span>
+            </li>
+
+            <li>
+                <button type="submit" id="submit">Create Account!</button>
+            </li>
+        </ol>
+        <div id="formError" class="invalid"></div>
+    </form>
+</body>
+
+</html>
