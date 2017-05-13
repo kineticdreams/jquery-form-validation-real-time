@@ -90,12 +90,13 @@ li:nth-child(9) {
 
 li {
     display: grid;
-    grid-template-columns: 1fr 200px;
-    /*grid-column-gap: 15px;*/
+    grid-template-columns: 1fr 100%;
 }
 
 span {
-    bottom: .7vh;
+    /*position: absolute;*/
+    /*bottom: calc(100% - .7vh);*/
+    /*height: auto;*/
 }
 
 .off {
@@ -110,7 +111,7 @@ span {
     position: relative;
     background: #c2e1f5;
     border-radius: 5px;
-    height: 26px;
+    /*height: auto;*/
     padding: 5px;
     text-align: center;
     box-shadow: 11px 11px 20px -14px #000;

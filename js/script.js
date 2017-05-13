@@ -41,11 +41,13 @@ console.log(validEmail);
     }).focus(function () {
         $(this).next().html("<p id='error'>Please enter a valid email address!</p>").show("slow");
     }).blur(function () {
-        if (validEmail === false) {
+        if (!validEmail) {
             $(this).focus();
             $(this).next().html('<p id="error">Entry does not match expected pattern: ' + $(this).attr('placeholder') + '</p>');
-        } // isValid test
-        $(this).next().hide("slow");
+        }
+        else {
+            $(this).next().hide("slow");
+        }
     });
 
 
@@ -70,7 +72,13 @@ console.log(validEmail);
     }).focus(function () {
         $(this).next().html('<p id="error">At least <span id="number" class="bold invalid">one number</span> and at least <span id="length" class="bold invalid">6 characters</span></p>').show("slow");
     }).blur(function () {
-        $(this).next().hide("slow");
+        if (!passNo || !passLen) {
+            $(this).focus();
+            $(this).next().html('<p id="error">Entry does not match expected pattern: ' + $(this).attr('placeholder') + '</p>');
+        }
+        else {
+            $(this).next().hide("slow");
+        }
     });
 
 
@@ -83,7 +91,13 @@ console.log(validEmail);
     }).focus(function () {
         $(this).next().html("<p id='error'>Please enter a valid phone number!</p>").show("slow");
     }).blur(function () {
-        $(this).next().hide("slow");
+        if (!validPhone) {
+            $(this).focus();
+            $(this).next().html('<p id="error">Entry does not match expected pattern: ' + $(this).attr('placeholder') + '</p>');
+        }
+        else {
+            $(this).next().hide("slow");
+        }
     });
 
 
@@ -98,9 +112,16 @@ console.log(validEmail);
         var url = $(this).val();
         if (url.indexOf("http://")) {
             url = "http://" + url;
-            $("#myurl").val(url);
+            $(this).val(url);
         }
-        $(this).next().hide("slow");
+
+        if (!validUrl) {
+            $(this).focus();
+            $(this).next().html('<p id="error">Entry does not match expected pattern: ' + $(this).attr('placeholder') + '</p>');
+        }
+        else {
+            $(this).next().hide("slow");
+        }
     });
 
     $('#myform').submit(function () {
@@ -108,7 +129,7 @@ console.log(validEmail);
         $('input[placeholder]').each(function () {
             // console.log(index,":", value, ":", $(this).val());
             if ($(this).val() === '') {
-                $(this).next().html('This is a required field!').show("1000");
+                $(this).next().html('This is a required field!').show("slow");
                 abort = true;
             }
             if (validPhone === false || validEmail === false || validUrl === false || passNo === false || passLen === false){
