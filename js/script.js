@@ -1,24 +1,8 @@
 $(document).ready(function () {
 
-
     var validEmail, validPhone, validUrl = false;
     var passLen = false;
     var passNo = false;
-    var placeholder = $('input[placeholder]').text();
-
-//     $(function()
-//     {
-// //handle the click for each of 'li'
-//         $('ul#services li').click(function()
-//         {
-// //toggle the image
-//             var newimg =$('img',this).attr('src') == 'images/tick.png' ? 'images/cross.png' : 'images/tick.png';
-//             /*
-//              notice the second parameter to $() is the context.
-//              'this' is the 'li' that was clicked.*/
-//             $('img', this).attr('src',newimg);
-//         });
-//     });
 
     function checkIfValid(value) {
         if (!value) {
@@ -37,7 +21,6 @@ $(document).ready(function () {
         var email = $(this).val();
         var isValid = pattern.test(email);
         validEmail = checkIfValid(isValid);
-console.log(validEmail);
     }).focus(function () {
         $(this).next().html("<p id='error'>Please enter a valid email address!</p>").show("slow");
     }).blur(function () {
@@ -84,13 +67,19 @@ console.log(validEmail);
 
     $('#phone').keyup(function () {
         var phone = $(this).val();
-        var telPattern = /^04 ?(?:(?:[01] ?[0-9]|2 ?[0-57-9]|3 ?[1-9]|4 ?[7-9]|5 ?[018]) ?[0-9]|3 ?0 ?[0-5])(?: ?[0-9]){5}$/i;
+        var telPattern = /^(?:\+?614|0)[2-478](?:[ -]?[0-9]){8}$/i;
         var isValid = telPattern.test(phone);
         validPhone = checkIfValid(isValid);
-        return validPhone;
     }).focus(function () {
         $(this).next().html("<p id='error'>Please enter a valid phone number!</p>").show("slow");
     }).blur(function () {
+        var tel = $(this).val();
+        console.log(tel);
+        if (!tel.indexOf("+614")) {
+            // var result = tel.replace("+614", "04");
+            $(this).val(tel.replace("+614", "04"));
+            console.log("replaced: ", tel);
+        }
         if (!validPhone) {
             $(this).focus();
             $(this).next().html('<p id="error">Entry does not match expected pattern: ' + $(this).attr('placeholder') + '</p>');
@@ -132,7 +121,7 @@ console.log(validEmail);
                 $(this).next().html('This is a required field!').show("slow");
                 abort = true;
             }
-            if (validPhone === false || validEmail === false || validUrl === false || passNo === false || passLen === false){
+            if (validPhone === false || validEmail === false || validUrl === false || passNo === false || passLen === false) {
                 abort = true;
             }
         }); // go through each required value
@@ -143,17 +132,5 @@ console.log(validEmail);
             return true;
         }
     })//on submit
-
-    // $('input[placeholder]').blur(function() {
-    //
-    //     var myPattern = $(this).attr('pattern');
-    //     var myPlaceholder = $(this).attr('placeholder');
-    //     var isValid = $(this).val().search(myPattern) >= 0;
-    //
-    //     if (!isValid) {
-    //         $(this).focus();
-    //         $(this).after('<div class="invalid">Entry does not match expected pattern: ' + myPlaceholder + '</div>');
-    //     } // isValid test
-    // }); // onblur
 
 });
